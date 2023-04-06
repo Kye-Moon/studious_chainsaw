@@ -1,0 +1,35 @@
+service: ServiceModulesLayer
+
+frameworkVersion: '>=3.19.0'
+
+provider:
+  name: aws
+  stage: dev
+  runtime: python3.9
+  region: ap-southeast-2
+  logRetentionInDays: 60 # how long logs are kept in CloudWatch
+  environment:
+    # required Environment Variables. Don't remove.
+    stage: ${self:provider.stage}
+    region: ${self:provider.region}
+    service: ${self:service}
+  tags:
+    Application: ${self:service}
+    Stage: ${self:provider.stage}
+
+configValidationMode: warn
+layers:
+    serviceModules:
+      package:
+        artifact: service_modules_layer.zip
+      compatibleRuntimes:
+          - python3.9
+
+resources:
+  Outputs:
+    ServiceModulesLayer:
+      Value:
+        Ref: !Ref serviceModules
+
+
+

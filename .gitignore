@@ -15,6 +15,9 @@ api/.aws-sam
 .nvmrc
 .awsenv
 
+dist
+build
+
 # IDE
 .vscode
 

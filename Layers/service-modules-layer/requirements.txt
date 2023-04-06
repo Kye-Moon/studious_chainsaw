@@ -1,0 +1,4 @@
+boto3==1.26.91
+aws-lambda-powertools
+requests
+pydantic
